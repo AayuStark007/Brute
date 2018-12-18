@@ -17,6 +17,9 @@ project "Brute"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+	
+	pchheader "btpch.h"
+	pchsource "Brute/src/btpch.cpp"
 
 	files
 	{

@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace Brute {
 
 	class BRUTE_API WindowResizeEvent : public Event

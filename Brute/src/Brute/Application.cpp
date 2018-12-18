@@ -1,3 +1,4 @@
+#include "btpch.h"
 #include "Application.h"
 
 #include "Brute/Events/ApplicationEvent.h"

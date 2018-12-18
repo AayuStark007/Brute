@@ -25,15 +25,16 @@
     <ClInclude Include="src\Brute\Events\Event.h">
       <Filter>Brute\Events</Filter>
     </ClInclude>
-    <ClInclude Include="src\Brute\Log.h">
-      <Filter>Brute</Filter>
-    </ClInclude>
     <ClInclude Include="src\Brute\Events\KeyEvent.h">
       <Filter>Brute\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Brute\Events\MouseEvent.h">
       <Filter>Brute\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Brute\Log.h">
+      <Filter>Brute</Filter>
+    </ClInclude>
+    <ClInclude Include="src\btpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Brute\Application.cpp">
@@ -42,5 +43,6 @@
     <ClCompile Include="src\Brute\Log.cpp">
       <Filter>Brute</Filter>
     </ClCompile>
+    <ClCompile Include="src\btpch.cpp" />
   </ItemGroup>
 </Project>
