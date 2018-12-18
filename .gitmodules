@@ -1,3 +1,6 @@
 [submodule "Brute/vendor/spdlog"]
 	path = Brute/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "Brute/vendor/GLFW"]
+	path = Brute/vendor/GLFW
+	url = https://github.com/AayuStark007/glfw
