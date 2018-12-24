@@ -92,6 +92,4 @@ namespace Brute {
 
 		EVENT_CLASS_TYPE(MouseButtonReleased)
 	};
-	};
-
 }
