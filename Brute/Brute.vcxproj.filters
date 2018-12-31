@@ -37,6 +37,12 @@
     <ClInclude Include="src\Brute\Events\MouseEvent.h">
       <Filter>Brute\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Brute\Layer.h">
+      <Filter>Brute</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Brute\LayerStack.h">
+      <Filter>Brute</Filter>
+    </ClInclude>
     <ClInclude Include="src\Brute\Log.h">
       <Filter>Brute</Filter>
     </ClInclude>
@@ -50,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Brute\Application.cpp">
+      <Filter>Brute</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Brute\Layer.cpp">
+      <Filter>Brute</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Brute\LayerStack.cpp">
       <Filter>Brute</Filter>
     </ClCompile>
     <ClCompile Include="src\Brute\Log.cpp">
