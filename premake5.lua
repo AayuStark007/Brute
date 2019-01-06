@@ -13,8 +13,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (soultion directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Brute/vendor/GLFW/include"
+IncludeDir["Glad"] = "Brute/vendor/Glad/include"
 
 include "Brute/vendor/GLFW"
+include "Brute/vendor/Glad"
 
 project "Brute"
 	location "Brute"
@@ -37,12 +39,14 @@ project "Brute"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
@@ -54,7 +58,8 @@ project "Brute"
 		defines
 		{
 			"BT_PLATFORM_WINDOWS",
-			"BT_BUILD_DLL"
+			"BT_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands
