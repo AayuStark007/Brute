@@ -14,9 +14,11 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "Brute/vendor/GLFW/include"
 IncludeDir["Glad"] = "Brute/vendor/Glad/include"
+IncludeDir["ImGui"] = "Brute/vendor/imgui"
 
 include "Brute/vendor/GLFW"
 include "Brute/vendor/Glad"
+include "Brute/vendor/imgui"
 
 project "Brute"
 	location "Brute"
@@ -40,13 +42,15 @@ project "Brute"
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.Glad}"
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.ImGui}"
 	}
 
 	links
 	{
 		"GLFW",
 		"Glad",
+		"ImGui",
 		"opengl32.lib"
 	}
 
@@ -59,7 +63,8 @@ project "Brute"
 		{
 			"BT_PLATFORM_WINDOWS",
 			"BT_BUILD_DLL",
-			"GLFW_INCLUDE_NONE"
+			"GLFW_INCLUDE_NONE",
+			"IMGUI_IMPL_OPENGL_LOADER_GLAD"
 		}
 
 		postbuildcommands

@@ -5,6 +5,7 @@
 #include "Brute/Application.h"
 #include "Brute/Layer.h"
 #include "Brute/Log.h"
+#include "Brute/ImGui/ImGuiLayer.h"
 
 // ---Entry Point---------------------------
 #include "Brute/EntryPoint.h"
