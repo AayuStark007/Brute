@@ -12,3 +12,5 @@ bin-int/
 
 # Files
 *.user
+*.vcxproj
+*.vcxproj.user

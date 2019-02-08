@@ -20,6 +20,8 @@ include "Brute/vendor/GLFW"
 include "Brute/vendor/Glad"
 include "Brute/vendor/imgui"
 
+-- startproject "Sandbox"
+
 project "Brute"
 	location "Brute"
 	kind "SharedLib"
@@ -69,7 +71,7 @@ project "Brute"
 
 		postbuildcommands
 		{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
 		}
 
 	filter "configurations:Debug"
