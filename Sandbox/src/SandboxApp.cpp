@@ -15,7 +15,7 @@ public:
 
 	void OnEvent(Brute::Event& event) override
 	{
-		BT_TRACE("{0}", event);
+		//BT_TRACE("{0}", event);
 	}
 };
 

@@ -158,6 +158,7 @@
     <ClInclude Include="src\Brute\Events\KeyEvent.h" />
     <ClInclude Include="src\Brute\Events\MouseEvent.h" />
     <ClInclude Include="src\Brute\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Brute\Input.h" />
     <ClInclude Include="src\Brute\Layer.h" />
     <ClInclude Include="src\Brute\LayerStack.h" />
     <ClInclude Include="src\Brute\Log.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="src\Platform\OpenGL\imgui_impl_opengl3.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\btpch.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Brute\Application.cpp" />
@@ -177,6 +179,7 @@
     <ClCompile Include="src\btpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">
