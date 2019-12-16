@@ -7,6 +7,8 @@
 #include "Brute/Events/Event.h"
 #include "Brute/Events/ApplicationEvent.h"
 
+#include "Brute/ImGui/ImGuiLayer.h"
+
 
 namespace Brute {
 
@@ -29,6 +31,7 @@ namespace Brute {
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 	private:
