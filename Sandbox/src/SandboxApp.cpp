@@ -1,5 +1,7 @@
 #include <Brute.h>
 
+#include "imgui/imgui.h"
+
 class ExampleLayer : public Brute::Layer
 {
 public:
@@ -14,6 +16,12 @@ public:
 
 		if (Brute::Input::IsKeyPressed(BT_KEY_Y))
 			BT_TRACE("Y key is pressed (poll)!");
+	}
+
+	void OnImGuiRender() override {
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World");
+		ImGui::End();
 	}
 
 	void OnEvent(Brute::Event& event) override

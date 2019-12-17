@@ -114,6 +114,7 @@ project "Sandbox"
 	{
 		"Brute/vendor/spdlog/include",
 		"Brute/src",
+		"Brute/vendor",
 		"%{IncludeDir.glm}"
 	}
 
