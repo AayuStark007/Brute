@@ -1,10 +1,14 @@
 #pragma once
 
 #ifdef BT_PLATFORM_WINDOWS
-	#ifdef BT_BUILD_DLL
-		#define BRUTE_API __declspec(dllexport)
+	#if BT_DYNAMIC_LINK
+		#ifdef BT_BUILD_DLL
+			#define BRUTE_API __declspec(dllexport)
+		#else
+			#define BRUTE_API __declspec(dllimport)
+		#endif
 	#else
-		#define BRUTE_API __declspec(dllimport)
+		#define BRUTE_API
 	#endif
 #else
 	#error Brute only supports Windows!
