@@ -9,6 +9,8 @@
 
 #include "Brute/ImGui/ImGuiLayer.h"
 
+#include "Brute/Renderer/Shader.h"
+
 
 namespace Brute {
 
@@ -36,6 +38,7 @@ namespace Brute {
 		LayerStack m_LayerStack;
 
 		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+		std::unique_ptr<Shader> m_Shader;
 	private:
 		static Application* s_Instance;
 	};
