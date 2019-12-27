@@ -155,9 +155,12 @@
     <ClInclude Include="src\Brute\LayerStack.h" />
     <ClInclude Include="src\Brute\Log.h" />
     <ClInclude Include="src\Brute\MouseButtonCodes.h" />
+    <ClInclude Include="src\Brute\Renderer\Buffer.h" />
     <ClInclude Include="src\Brute\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Brute\Renderer\Renderer.h" />
     <ClInclude Include="src\Brute\Renderer\Shader.h" />
     <ClInclude Include="src\Brute\Window.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
@@ -170,7 +173,10 @@
     <ClCompile Include="src\Brute\Layer.cpp" />
     <ClCompile Include="src\Brute\LayerStack.cpp" />
     <ClCompile Include="src\Brute\Log.cpp" />
+    <ClCompile Include="src\Brute\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Brute\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Brute\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
