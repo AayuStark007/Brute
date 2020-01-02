@@ -183,11 +183,22 @@ namespace Brute {
 			glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
 
+			RenderCommand::SetClearColor();
+			RenderCommand::Clear();
+
+			Renderer::BeginScene();
+
 			m_ShaderBlue->Bind();
+			Renderer::Submit(m_SquareVA);
+
+			m_Shader->Bind();
+			Renderer::Submit(m_VertexArray);
+
+			Renderer::EndScene();
+
 			m_SquareVA->Bind();
 			glDrawElements(GL_TRIANGLES, m_SquareVA->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
 
-			m_Shader->Bind();
 			m_VertexArray->Bind();
 			glDrawElements(GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
 
