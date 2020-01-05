@@ -11,23 +11,23 @@ namespace Brute {
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None:
-			BT_CORE_ASSERT(false, "RendererAPI::None is curently not supported!");
+		case RendererAPI::API::None:
+			BT_CORE_ASSERT(false, "RendererAPI::API::None is curently not supported!");
 			return nullptr;
 
-		case RendererAPI::OpenGL:
+		case RendererAPI::API::OpenGL:
 			return new OpenGLShader(vertexSrc, fragmentSrc);
 
-		case RendererAPI::Direct3D:
-			BT_CORE_ASSERT(false, "RendererAPI::Direct3D is curently not supported!");
+		case RendererAPI::API::Direct3D:
+			BT_CORE_ASSERT(false, "RendererAPI::API::Direct3D is curently not supported!");
 			return nullptr;
 
-		case RendererAPI::Vulkan:
-			BT_CORE_ASSERT(false, "RendererAPI::Vulkan is curently not supported!");
+		case RendererAPI::API::Vulkan:
+			BT_CORE_ASSERT(false, "RendererAPI::API::Vulkan is curently not supported!");
 			return nullptr;
 		}
 
-		BT_CORE_ASSERT(false, "Unknown RendererAPI!");
+		BT_CORE_ASSERT(false, "Unknown RendererAPI::API!");
 		return nullptr;
 	}
 

@@ -13,6 +13,8 @@
 #include "Brute/Renderer/Buffer.h"
 #include "Brute/Renderer/VertexArray.h"
 
+#include "Brute/Renderer/Renderer.h"
+
 
 namespace Brute {
 

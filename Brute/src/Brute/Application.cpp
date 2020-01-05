@@ -3,8 +3,6 @@
 
 #include "Brute/Log.h"
 
-#include <glad/glad.h>
-
 #include "Input.h"
 
 namespace Brute {
@@ -29,7 +27,7 @@ namespace Brute {
 		// Index Buffer
 		// Shader
 
-		m_VertexArray.reset(VertexArray::Create());
+		/*m_VertexArray.reset(VertexArray::Create());
 
 		float vertices[3 * 7] = {
 			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
@@ -83,7 +81,7 @@ namespace Brute {
 			}
 		)";
 
-		m_Shader.reset(Shader::Create(vertexSrc, fragmentSrc));
+		m_Shader.reset(Shader::Create(vertexSrc, fragmentSrc));*/
 
 		////// RENDER SQUARE //////
 
@@ -180,10 +178,7 @@ namespace Brute {
 	{
 		while (m_Running)
 		{
-			glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-			glClear(GL_COLOR_BUFFER_BIT);
-
-			RenderCommand::SetClearColor();
+			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 			RenderCommand::Clear();
 
 			Renderer::BeginScene();
@@ -191,16 +186,10 @@ namespace Brute {
 			m_ShaderBlue->Bind();
 			Renderer::Submit(m_SquareVA);
 
-			m_Shader->Bind();
-			Renderer::Submit(m_VertexArray);
+			/*m_Shader->Bind();
+			Renderer::Submit(m_VertexArray);*/
 
 			Renderer::EndScene();
-
-			m_SquareVA->Bind();
-			glDrawElements(GL_TRIANGLES, m_SquareVA->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
-
-			m_VertexArray->Bind();
-			glDrawElements(GL_TRIANGLES, m_VertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
