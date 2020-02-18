@@ -74,8 +74,8 @@ public:
 
 		Brute::Renderer::BeginScene();
 
-		m_Shader->Bind();
-		Brute::Renderer::Submit(m_VertexArray);
+		/*m_Shader->Bind();
+		Brute::Renderer::Submit(m_VertexArray);*/
 
 		Brute::Renderer::EndScene();
 

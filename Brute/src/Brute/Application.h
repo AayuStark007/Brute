@@ -14,6 +14,7 @@
 #include "Brute/Renderer/VertexArray.h"
 
 #include "Brute/Renderer/Renderer.h"
+#include "Brute/Renderer/OrthographicCamera.h"
 
 
 namespace Brute {
@@ -46,6 +47,8 @@ namespace Brute {
 
 		std::shared_ptr<VertexArray> m_SquareVA;
 		std::shared_ptr<Shader> m_ShaderBlue;
+
+		OrthographicCamera m_Camera;
 	private:
 		static Application* s_Instance;
 	};
