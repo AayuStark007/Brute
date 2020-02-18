@@ -72,12 +72,12 @@ public:
 		//Brute::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 		//Brute::RenderCommand::Clear();
 
-		Brute::Renderer::BeginScene();
+		//Brute::Renderer::BeginScene();
 
 		/*m_Shader->Bind();
 		Brute::Renderer::Submit(m_VertexArray);*/
 
-		Brute::Renderer::EndScene();
+		//Brute::Renderer::EndScene();
 
 		if (Brute::Input::IsKeyPressed(BT_KEY_Y))
 			BT_TRACE("Y key is pressed (poll)!");

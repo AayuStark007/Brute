@@ -13,7 +13,7 @@ namespace Brute {
 	Application* Application::s_Instance = nullptr;
 
 	Application::Application()
-		: m_Camera(-2.0f, 2.0f, -2.0f, 2.0f)
+		: m_Camera(-1.6f, 1.6f, -0.9f, 0.9f)
 	{
 		BT_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
@@ -187,16 +187,12 @@ namespace Brute {
 			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 			RenderCommand::Clear();
 
-			Renderer::BeginScene();
+			m_Camera.SetPosition({ 0.5f, 0.5f, 0.0f });
+			m_Camera.SetRotation(45.0f);
 
-			m_ShaderBlue->Bind();
-			m_ShaderBlue->UploadUniformMat4("u_ViewProjection", m_Camera.GetViewProjectionMatrix());
-			Renderer::Submit(m_SquareVA);
-
-			m_Shader->Bind();
-			m_Shader->UploadUniformMat4("u_ViewProjection", m_Camera.GetViewProjectionMatrix());
-			Renderer::Submit(m_VertexArray);
-
+			Renderer::BeginScene(m_Camera);
+			Renderer::Submit(m_ShaderBlue, m_SquareVA);
+			Renderer::Submit(m_Shader, m_VertexArray);
 			Renderer::EndScene();
 
 			for (Layer* layer : m_LayerStack)
