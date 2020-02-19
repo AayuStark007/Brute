@@ -9,16 +9,9 @@
 
 #include "Brute/ImGui/ImGuiLayer.h"
 
-#include "Brute/Renderer/Shader.h"
-#include "Brute/Renderer/Buffer.h"
-#include "Brute/Renderer/VertexArray.h"
-
-#include "Brute/Renderer/Renderer.h"
-
-
 namespace Brute {
 
-	class BRUTE_API Application
+	class Application
 	{
 	public:
 		Application();
@@ -40,12 +33,6 @@ namespace Brute {
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-
-		std::shared_ptr<VertexArray> m_VertexArray;
-		std::shared_ptr<Shader> m_Shader;
-
-		std::shared_ptr<VertexArray> m_SquareVA;
-		std::shared_ptr<Shader> m_ShaderBlue;
 	private:
 		static Application* s_Instance;
 	};
