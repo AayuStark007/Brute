@@ -12,6 +12,17 @@
 
 #include "Brute/ImGui/ImGuiLayer.h"
 
+// ---Renderer------------------------------
+#include "Brute/Renderer/Renderer.h"
+#include "Brute/Renderer/RenderCommand.h"
+
+#include "Brute/Renderer/Shader.h"
+#include "Brute/Renderer/Buffer.h"
+#include "Brute/Renderer/VertexArray.h"
+
+#include "Brute/Renderer/OrthographicCamera.h"
+// -----------------------------------------
+
 // ---Entry Point---------------------------
 #include "Brute/EntryPoint.h"
 // -----------------------------------------
