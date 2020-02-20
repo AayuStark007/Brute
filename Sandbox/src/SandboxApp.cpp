@@ -134,25 +134,26 @@ public:
 		m_ShaderBlue.reset(Brute::Shader::Create(blueShaderVertexSrc, blueShaderFragmentSrc));
 	}
 
-	void OnUpdate() override
+	void OnUpdate(Brute::TimeStep ts) override
 	{
+		//BT_TRACE("Delta time: {0}", ts.GetSeconds());
 		/*if (Brute::Input::IsKeyPressed(BT_KEY_Y))
 			BT_TRACE("Y key is pressed (poll)!");*/
 
 		if (Brute::Input::IsKeyPressed(BT_KEY_LEFT))
-				m_CameraPosition.x -= m_CameraMoveSpeed;
+				m_CameraPosition.x -= m_CameraMoveSpeed * ts;
 		else if (Brute::Input::IsKeyPressed(BT_KEY_RIGHT))
-			m_CameraPosition.x += m_CameraMoveSpeed;
+			m_CameraPosition.x += m_CameraMoveSpeed * ts;
 
 		if (Brute::Input::IsKeyPressed(BT_KEY_UP))
-			m_CameraPosition.y += m_CameraMoveSpeed;
+			m_CameraPosition.y += m_CameraMoveSpeed * ts;
 		else if (Brute::Input::IsKeyPressed(BT_KEY_DOWN))
-			m_CameraPosition.y -= m_CameraMoveSpeed;
+			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
 
 		if (Brute::Input::IsKeyPressed(BT_KEY_A))
-			m_CameraRotation += m_CameraRotateSpeed;
+			m_CameraRotation += m_CameraRotateSpeed * ts;
 		else if (Brute::Input::IsKeyPressed(BT_KEY_D))
-			m_CameraRotation -= m_CameraRotateSpeed;
+			m_CameraRotation -= m_CameraRotateSpeed * ts;
 
 		Brute::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 		Brute::RenderCommand::Clear();
@@ -202,8 +203,8 @@ private:
 	Brute::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
 	float m_CameraRotation;
-	float m_CameraMoveSpeed = 0.01f;
-	float m_CameraRotateSpeed = 0.5f;
+	float m_CameraMoveSpeed = 5.0f;
+	float m_CameraRotateSpeed = 180.0f;
 };
 
 class Sandbox : public Brute::Application

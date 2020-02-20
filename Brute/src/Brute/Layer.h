@@ -3,6 +3,8 @@
 #include "Brute/Core.h"
 #include "Brute/Events/Event.h"
 
+#include "Brute/Core/TimeStep.h"
+
 namespace Brute {
 
 	class BRUTE_API Layer
@@ -13,7 +15,7 @@ namespace Brute {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(TimeStep ts) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 

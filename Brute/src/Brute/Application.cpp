@@ -5,6 +5,8 @@
 
 #include "Input.h"
 
+#include <glfw/glfw3.h>
+
 
 namespace Brute {
 
@@ -19,6 +21,7 @@ namespace Brute {
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+		m_Window->SetVSync(false);
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
@@ -60,8 +63,12 @@ namespace Brute {
 	{
 		while (m_Running)
 		{
+			float time = (float)glfwGetTime();  // Platform::GetTime()
+			TimeStep timeStep = time - m_LastFrameTime;
+			m_LastFrameTime = time;
+
 			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate();
+				layer->OnUpdate(timeStep);
 
 			//auto[x, y] = Input::GetMousePos();
 			//BT_CORE_TRACE("{0}, {1}", x, y);
