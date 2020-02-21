@@ -82,10 +82,10 @@ public:
 		m_SquareVA.reset(Brute::VertexArray::Create());
 
 		float squareVertices[3 * 4] = {
-			-0.75f, -0.75f, 0.0f,
-			 0.75f, -0.75f, 0.0f,
-			 0.75f,  0.75f, 0.0f,
-			-0.75f,  0.75f, 0.0f,
+			-0.5f, -0.5f, 0.0f,
+			 0.5f, -0.5f, 0.0f,
+			 0.5f,  0.5f, 0.0f,
+			-0.5f,  0.5f, 0.0f,
 		};
 
 		std::shared_ptr<Brute::VertexBuffer> squareVB;
@@ -180,9 +180,18 @@ public:
 
 		Brute::Renderer::BeginScene(m_Camera);
 
-		glm::mat4 transform = glm::translate(glm::mat4(1.0f), m_SquarePosition);
+		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
-		Brute::Renderer::Submit(m_ShaderBlue, m_SquareVA, transform);
+		for (int y = 0; y < 20; y++)
+		{
+			for (int x = 0; x < 20; x++)
+			{
+				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
+				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
+				Brute::Renderer::Submit(m_ShaderBlue, m_SquareVA, transform);
+			}
+		}
+		
 		Brute::Renderer::Submit(m_Shader, m_VertexArray);
 
 		Brute::Renderer::EndScene();
