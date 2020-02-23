@@ -28,7 +28,7 @@ public:
 			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
 		};
 
-		std::shared_ptr<Brute::VertexBuffer> triangleVB;
+		Brute::Ref<Brute::VertexBuffer> triangleVB;
 		triangleVB.reset(Brute::VertexBuffer::Create(vertices, sizeof(vertices)));
 		Brute::BufferLayout layout = {
 			{ Brute::ShaderDataType::Float3, "a_Position" },
@@ -38,7 +38,7 @@ public:
 		m_VertexArray->AddVertexBuffer(triangleVB);
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		std::shared_ptr<Brute::IndexBuffer> triangleIB;
+		Brute::Ref<Brute::IndexBuffer> triangleIB;
 		triangleIB.reset(Brute::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(triangleIB);
 
@@ -90,7 +90,7 @@ public:
 			-0.5f,  0.5f, 0.0f,
 		};
 
-		std::shared_ptr<Brute::VertexBuffer> squareVB;
+		Brute::Ref<Brute::VertexBuffer> squareVB;
 		squareVB.reset(Brute::VertexBuffer::Create(
 			squareVertices, sizeof(squareVertices)
 		));
@@ -101,7 +101,7 @@ public:
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<Brute::IndexBuffer> squareIB;
+		Brute::Ref<Brute::IndexBuffer> squareIB;
 		squareIB.reset(Brute::IndexBuffer::Create(
 			squareIndices, sizeof(squareIndices) / sizeof(uint32_t)
 		));
@@ -229,11 +229,11 @@ public:
 		return false;
 	}
 private:
-	std::shared_ptr<Brute::VertexArray> m_VertexArray;
-	std::shared_ptr<Brute::Shader> m_Shader;
+	Brute::Ref<Brute::VertexArray> m_VertexArray;
+	Brute::Ref<Brute::Shader> m_Shader;
 
-	std::shared_ptr<Brute::VertexArray> m_SquareVA;
-	std::shared_ptr<Brute::Shader> m_ShaderFlatColor;
+	Brute::Ref<Brute::VertexArray> m_SquareVA;
+	Brute::Ref<Brute::Shader> m_ShaderFlatColor;
 
 	Brute::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
