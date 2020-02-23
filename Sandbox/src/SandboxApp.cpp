@@ -179,6 +179,7 @@ public:
 		m_TextureShader.reset(Brute::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
 
 		m_Texture = Brute::Texture2D::Create("assets/textures/Checkerboard.png");
+		m_BruteLogoTexture = Brute::Texture2D::Create("assets/textures/Logo.png");
 
 		std::dynamic_pointer_cast<Brute::OpenGLShader>(m_TextureShader)->Bind();
 		std::dynamic_pointer_cast<Brute::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
@@ -243,6 +244,9 @@ public:
 		m_Texture->Bind();
 		Brute::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 		
+		m_BruteLogoTexture->Bind();
+		Brute::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		
 		// Triangle
 		//Brute::Renderer::Submit(m_Shader, m_VertexArray);
 
@@ -282,6 +286,7 @@ private:
 	Brute::Ref<Brute::Shader> m_TextureShader;
 
 	Brute::Ref<Brute::Texture2D> m_Texture;
+	Brute::Ref<Brute::Texture2D> m_BruteLogoTexture;
 
 	Brute::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
