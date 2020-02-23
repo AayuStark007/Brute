@@ -83,11 +83,11 @@ public:
 
 		m_SquareVA.reset(Brute::VertexArray::Create());
 
-		float squareVertices[3 * 4] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f,
+		float squareVertices[5 * 4] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,  // Bottom-Left  (black)
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,  // Bottom-Right (red)
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,  // Top-Right     (yellow)
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f   // Top-Left    (green)
 		};
 
 		Brute::Ref<Brute::VertexBuffer> squareVB;
@@ -97,6 +97,7 @@ public:
 
 		squareVB->SetLayout({
 			{ Brute::ShaderDataType::Float3, "a_Position" },
+			{ Brute::ShaderDataType::Float2, "a_TexCoord" },
 			});
 		m_SquareVA->AddVertexBuffer(squareVB);
 
@@ -141,6 +142,46 @@ public:
 		)";
 
 		m_ShaderFlatColor.reset(Brute::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
+
+		std::string textureShaderVertexSrc = R"(
+			#version 330 core
+
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec2 a_TexCoord;
+
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+
+			out vec2 v_TexCoord;
+
+			void main()
+			{
+				v_TexCoord = a_TexCoord;
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
+			}
+		)";
+
+		std::string textureShaderFragmentSrc = R"(
+			#version 330 core
+
+			layout(location = 0) out vec4 color;
+
+			in vec2 v_TexCoord;
+
+			uniform sampler2D u_Texture;
+
+			void main()
+			{
+				color = texture(u_Texture, v_TexCoord);
+			}
+		)";
+
+		m_TextureShader.reset(Brute::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
+
+		m_Texture = Brute::Texture2D::Create("assets/textures/Checkerboard.png");
+
+		std::dynamic_pointer_cast<Brute::OpenGLShader>(m_TextureShader)->Bind();
+		std::dynamic_pointer_cast<Brute::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Brute::TimeStep ts) override
@@ -198,8 +239,12 @@ public:
 				Brute::Renderer::Submit(m_ShaderFlatColor, m_SquareVA, transform);
 			}
 		}
+
+		m_Texture->Bind();
+		Brute::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 		
-		Brute::Renderer::Submit(m_Shader, m_VertexArray);
+		// Triangle
+		//Brute::Renderer::Submit(m_Shader, m_VertexArray);
 
 		Brute::Renderer::EndScene();
 	}
@@ -234,6 +279,9 @@ private:
 
 	Brute::Ref<Brute::VertexArray> m_SquareVA;
 	Brute::Ref<Brute::Shader> m_ShaderFlatColor;
+	Brute::Ref<Brute::Shader> m_TextureShader;
+
+	Brute::Ref<Brute::Texture2D> m_Texture;
 
 	Brute::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;

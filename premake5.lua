@@ -17,6 +17,7 @@ IncludeDir["GLFW"] = "Brute/vendor/GLFW/include"
 IncludeDir["Glad"] = "Brute/vendor/Glad/include"
 IncludeDir["ImGui"] = "Brute/vendor/imgui"
 IncludeDir["glm"] = "Brute/vendor/glm"
+IncludeDir["stb_image"] = "Brute/vendor/stb_image"
 
 include "Brute/vendor/GLFW"
 include "Brute/vendor/Glad"
@@ -41,6 +42,8 @@ project "Brute"
     {
         "%{prj.name}/src/**.h",
         "%{prj.name}/src/**.cpp",
+        "%{prj.name}/vendor/stb_image/**.h",
+        "%{prj.name}/vendor/stb_image/**.cpp",
         "%{prj.name}/vendor/glm/glm/**.hpp",
         "%{prj.name}/vendor/glm/glm/**.inl"
     }
@@ -57,7 +60,8 @@ project "Brute"
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.Glad}",
         "%{IncludeDir.ImGui}",
-        "%{IncludeDir.glm}"
+        "%{IncludeDir.glm}",
+        "%{IncludeDir.stb_image}"
     }
 
     links
