@@ -186,6 +186,7 @@ public:
 
 		glm::vec4 redColor(0.8f, 0.2f, 0.3f, 1.0f);
 		glm::vec4 blueColor(0.2f, 0.3f, 0.8f, 1.0f);
+		glm::vec4 anyColor(m_PickerColor[0], m_PickerColor[1], m_PickerColor[2], m_PickerColor[3]);
 		for (int y = 0; y < 20; y++)
 		{
 			for (int x = 0; x < 20; x++)
@@ -195,7 +196,7 @@ public:
 				if (x % 2 == 0)
 					m_ShaderFlatColor->UploadUniformFloat4("u_Color", redColor);
 				else
-					m_ShaderFlatColor->UploadUniformFloat4("u_Color", blueColor);
+					m_ShaderFlatColor->UploadUniformFloat4("u_Color", anyColor);
 
 				Brute::Renderer::Submit(m_ShaderFlatColor, m_SquareVA, transform);
 			}
@@ -207,9 +208,9 @@ public:
 	}
 
 	void OnImGuiRender() override {
-		/*ImGui::Begin("Test");
-		ImGui::Text("Hello World");
-		ImGui::End();*/
+		ImGui::Begin("Test");
+		ImGui::ColorEdit4("Color", m_PickerColor);
+		ImGui::End();
 	}
 
 	void OnEvent(Brute::Event& event) override
@@ -245,6 +246,8 @@ private:
 
 	glm::vec3 m_SquarePosition;
 	float m_SquareMoveSpeed = 1.0f;
+
+	float m_PickerColor[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
 };
 
 class Sandbox : public Brute::Application
