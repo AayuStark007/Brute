@@ -18,15 +18,27 @@ namespace Brute {
 		return 0;
 	}
 
+	static std::string GetNameFromFilePath(const std::string& filePath)
+	{
+		// assets/shaders/Texture.glsl
+		auto lastSlash = filePath.find_last_of("/\\");
+		lastSlash = lastSlash == std::string::npos ? 0 : lastSlash + 1;
+		auto lastDot = filePath.rfind('.');
+		auto count = lastDot == std::string::npos ? filePath.size() - lastSlash : lastDot - lastSlash;
+		return filePath.substr(lastSlash, count);
+	}
+
 	OpenGLShader::OpenGLShader(const std::string& filePath)
 	{
 		std::string source = ReadFile(filePath);
 		auto shaderSources = PreProcess(source);
 		Compile(shaderSources);
 
+		m_Name = GetNameFromFilePath(filePath);
 	}
 
-	OpenGLShader::OpenGLShader(const std::string& vertexSrc, const std::string& fragmentSrc)
+	OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc)
+		: m_Name(name)
 	{
 		std::unordered_map<GLenum, std::string> sources;
 		sources[GL_VERTEX_SHADER] = vertexSrc;
@@ -42,7 +54,7 @@ namespace Brute {
 	std::string OpenGLShader::ReadFile(const std::string& filePath)
 	{
 		std::string result;
-		std::ifstream in(filePath, std::ios::in, std::ios::binary);
+		std::ifstream in(filePath, std::ios::in | std::ios::binary);
 		if (in)
 		{
 			in.seekg(0, std::ios::end);
@@ -86,8 +98,10 @@ namespace Brute {
 	void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string>& shaderSources)
 	{
 		GLuint program = glCreateProgram();
-		std::vector<GLenum> glShaderIDs(shaderSources.size());
+		BT_CORE_ASSERT(shaderSources.size() <= 2, "Only two shaders allowed currently!");
+		std::array<GLenum, 2> glShaderIDs;
 
+		int glShaderIdx = 0;
 		for (auto& kv : shaderSources)
 		{
 			GLenum shaderType = kv.first;
@@ -127,7 +141,7 @@ namespace Brute {
 
 			// Attach our shaders to our program
 			glAttachShader(program, shader);
-			glShaderIDs.push_back(shader);
+			glShaderIDs[glShaderIdx++] = shader;
 		}
 
 

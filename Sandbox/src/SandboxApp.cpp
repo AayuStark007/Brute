@@ -6,6 +6,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+
 class ExampleLayer : public Brute::Layer
 {
 public:
@@ -77,7 +78,7 @@ public:
 			}
 		)";
 
-		m_Shader.reset(Brute::Shader::Create(vertexSrc, fragmentSrc));
+		m_Shader = Brute::Shader::Create("VertPosColor", vertexSrc, fragmentSrc);
 
 		////// RENDER SQUARE //////
 
@@ -141,15 +142,15 @@ public:
 			}
 		)";
 
-		m_ShaderFlatColor.reset(Brute::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
+		m_ShaderFlatColor = Brute::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
 
-		m_TextureShader.reset(Brute::Shader::Create("assets/shaders/Texture.glsl"));
+		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		m_Texture = Brute::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_BruteLogoTexture = Brute::Texture2D::Create("assets/textures/Logo.png");
 
-		std::dynamic_pointer_cast<Brute::OpenGLShader>(m_TextureShader)->Bind();
-		std::dynamic_pointer_cast<Brute::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+		std::dynamic_pointer_cast<Brute::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<Brute::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Brute::TimeStep ts) override
@@ -207,12 +208,13 @@ public:
 				Brute::Renderer::Submit(m_ShaderFlatColor, m_SquareVA, transform);
 			}
 		}
+		auto textureShader = m_ShaderLibrary.Get("Texture");
 
 		m_Texture->Bind();
-		Brute::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		Brute::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 		
 		m_BruteLogoTexture->Bind();
-		Brute::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		Brute::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 		
 		// Triangle
 		//Brute::Renderer::Submit(m_Shader, m_VertexArray);
@@ -245,12 +247,12 @@ public:
 		return false;
 	}
 private:
+	Brute::ShaderLibrary m_ShaderLibrary;
 	Brute::Ref<Brute::VertexArray> m_VertexArray;
 	Brute::Ref<Brute::Shader> m_Shader;
 
 	Brute::Ref<Brute::VertexArray> m_SquareVA;
 	Brute::Ref<Brute::Shader> m_ShaderFlatColor;
-	Brute::Ref<Brute::Shader> m_TextureShader;
 
 	Brute::Ref<Brute::Texture2D> m_Texture;
 	Brute::Ref<Brute::Texture2D> m_BruteLogoTexture;
