@@ -11,6 +11,7 @@
 #include "Brute/Input.h"
 #include "Brute/KeyCodes.h"
 #include "Brute/MouseButtonCodes.h"
+#include "Brute/OrthographicCameraController.h"
 
 #include "Brute/ImGui/ImGuiLayer.h"
 
