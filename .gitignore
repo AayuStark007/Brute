@@ -11,7 +11,11 @@ bin-int/
 .vs/
 
 # Files
+*.sln
 *.user
 *.vcxproj
 *.vcxproj.user
 *.vcxproj.filters
+
+# Others
+imgui.ini
