@@ -19,9 +19,12 @@ IncludeDir["ImGui"] = "Brute/vendor/imgui"
 IncludeDir["glm"] = "Brute/vendor/glm"
 IncludeDir["stb_image"] = "Brute/vendor/stb_image"
 
-include "Brute/vendor/GLFW"
-include "Brute/vendor/Glad"
-include "Brute/vendor/imgui"
+group "Dependencies"
+	include "Brute/vendor/GLFW"
+	include "Brute/vendor/Glad"
+	include "Brute/vendor/imgui"
+
+group ""
 
 -- startproject "Sandbox"
 
