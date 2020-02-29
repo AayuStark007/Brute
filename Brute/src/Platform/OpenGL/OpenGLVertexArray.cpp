@@ -58,9 +58,9 @@ namespace Brute {
 		const auto& layout = vertexBuffer->GetLayout();
 		for (const auto& element : layout)
 		{
-			glEnableVertexAttribArray(index);
+			glEnableVertexAttribArray(index + m_VertexBufferIndexOffset);
 			glVertexAttribPointer(
-				index,
+				index + m_VertexBufferIndexOffset,
 				element.GetComponentCount(),
 				ShaderDataTypeToOpenGLBaseType(element.Type),
 				element.Normalized ? GL_TRUE : GL_FALSE,
@@ -68,6 +68,7 @@ namespace Brute {
 				(const void*)(intptr_t)element.Offset
 			);
 			index++;
+			m_VertexBufferIndexOffset += layout.GetElements().size();
 		}
 
 		m_VertexBuffers.push_back(vertexBuffer);

@@ -1,12 +1,16 @@
 [submodule "Brute/vendor/spdlog"]
 	path = Brute/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+	branch = v1.x
 [submodule "Brute/vendor/GLFW"]
 	path = Brute/vendor/GLFW
 	url = https://github.com/AayuStark007/glfw
+	branch = master
 [submodule "Brute/vendor/imgui"]
 	path = Brute/vendor/imgui
 	url = https://github.com/AayuStark007/imgui
+	branch = docking
 [submodule "Brute/vendor/glm"]
 	path = Brute/vendor/glm
 	url = https://github.com/g-truc/glm
+	branch = master

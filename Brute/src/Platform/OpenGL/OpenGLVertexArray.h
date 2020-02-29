@@ -20,6 +20,7 @@ namespace Brute {
 		virtual const Brute::Ref<IndexBuffer>& GetIndexBuffer() const { return m_IndexBuffer; };
 	private:
 		uint32_t m_RendererID;
+		uint32_t m_VertexBufferIndexOffset = 0;
 
 		std::vector<Brute::Ref<VertexBuffer>> m_VertexBuffers;
 		Brute::Ref<IndexBuffer> m_IndexBuffer;
