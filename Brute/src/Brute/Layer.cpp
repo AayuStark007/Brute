@@ -8,9 +8,4 @@ namespace Brute {
 	{
 	}
 
-
-	Layer::~Layer()
-	{
-	}
-
 }
