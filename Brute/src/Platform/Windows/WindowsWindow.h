@@ -11,7 +11,7 @@ namespace Brute {
 	{
 	public:
 		WindowsWindow(const WindowProps& props);
-		virtual ~WindowsWindow();
+		virtual ~WindowsWindow() = default;
 
 		void OnUpdate() override;
 

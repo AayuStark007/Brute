@@ -26,10 +26,6 @@ namespace Brute {
 		Init(props);
 	}
 
-	WindowsWindow::~WindowsWindow()
-	{
-	}
-
 	void WindowsWindow::Init(const WindowProps& props)
 	{
 		m_Data.Title = props.Title;
