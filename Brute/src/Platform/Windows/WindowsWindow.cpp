@@ -5,6 +5,8 @@
 #include "Brute/Events/MouseEvent.h"
 #include "Brute/Events/KeyEvent.h"
 
+#include "Brute/Renderer/Renderer.h"
+
 #include "Platform/OpenGL/OpenGLContext.h"
 
 namespace Brute {
@@ -44,6 +46,11 @@ namespace Brute {
 
 			s_GLFWInitialized = true;
 		}
+
+#if defined(BT_DEBUG)
+		if (Renderer::GetAPI() == RendererAPI::API::OpenGL)
+			glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
+#endif
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 
