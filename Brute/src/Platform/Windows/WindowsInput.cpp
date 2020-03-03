@@ -1,7 +1,7 @@
 #include "btpch.h"
 #include "WindowsInput.h"
 
-#include "Brute/Application.h"
+#include "Brute/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 namespace Brute {

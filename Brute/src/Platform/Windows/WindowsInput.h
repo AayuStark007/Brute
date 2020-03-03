@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Brute/Input.h"
+#include "Brute/Core/Input.h"
 
 namespace Brute {
 

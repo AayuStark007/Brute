@@ -4,7 +4,7 @@
 
 #include "Window.h"
 
-#include "Brute/LayerStack.h"
+#include "Brute/Core/LayerStack.h"
 #include "Brute/Events/Event.h"
 #include "Brute/Events/ApplicationEvent.h"
 

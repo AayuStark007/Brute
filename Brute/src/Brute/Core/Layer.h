@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Brute/Core.h"
+#include "Brute/Core/Core.h"
 #include "Brute/Events/Event.h"
 
 #include "Brute/Core/TimeStep.h"

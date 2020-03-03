@@ -1,8 +1,8 @@
 #include "btpch.h"
 #include "OrthographicCameraController.h"
 
-#include "Brute/Input.h"
-#include "Brute/KeyCodes.h"
+#include "Brute/Core/Input.h"
+#include "Brute/Core/KeyCodes.h"
 
 namespace Brute {
 	OrthographicCameraController::OrthographicCameraController(float aspectRatio, bool rotation)

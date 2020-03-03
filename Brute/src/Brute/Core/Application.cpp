@@ -1,7 +1,7 @@
 #include "btpch.h"
 #include "Application.h"
 
-#include "Brute/Log.h"
+#include "Brute/Core/Log.h"
 
 #include "Brute/Renderer/Renderer.h"
 

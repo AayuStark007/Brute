@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Brute/Layer.h"
+#include "Brute/Core/Layer.h"
 
 #include "Brute/Events/KeyEvent.h"
 #include "Brute/Events/MouseEvent.h"

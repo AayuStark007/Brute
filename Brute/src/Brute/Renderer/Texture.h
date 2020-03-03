@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "Brute/Core.h"
+#include "Brute/Core/Core.h"
 
 namespace Brute {
 

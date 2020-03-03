@@ -2,7 +2,7 @@
 
 #include "btpch.h"
 
-#include "Brute/Core.h"
+#include "Brute/Core/Core.h"
 #include "Brute/Events/Event.h"
 
 namespace Brute {

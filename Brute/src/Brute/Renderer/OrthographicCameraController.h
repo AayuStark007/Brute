@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Renderer/OrthographicCamera.h"
+#include "Brute/Renderer/OrthographicCamera.h"
 #include "Brute/Core/TimeStep.h"
 
 #include "Brute/Events/ApplicationEvent.h"

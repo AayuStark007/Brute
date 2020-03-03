@@ -1,7 +1,7 @@
 #pragma once
 
 #include "btpch.h"
-#include "Brute/Core.h"
+#include "Brute/Core/Core.h"
 
 namespace Brute {
 
