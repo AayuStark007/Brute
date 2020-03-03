@@ -4,18 +4,20 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # Build results
-bin/
+**/bin/
+!vendor/bin/premake/
 bin-int/
+
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
 
 # Files
-*.sln
-*.user
-*.vcxproj
-*.vcxproj.user
-*.vcxproj.filters
+**.sln
+**.user
+**.vcxproj
+**.vcxproj.user
+**.vcxproj.filters
 
 # Others
 imgui.ini
