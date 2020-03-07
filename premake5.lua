@@ -85,7 +85,6 @@ project "Brute"
 
         defines
         {
-            "BT_PLATFORM_WINDOWS",
             "BT_BUILD_DLL",
             "GLFW_INCLUDE_NONE",
             "IMGUI_IMPL_OPENGL_LOADER_GLAD"
@@ -138,11 +137,6 @@ project "Sandbox"
 
     filter "system:windows"
         systemversion "latest"
-
-        defines
-        {
-            "BT_PLATFORM_WINDOWS"
-        }
 
     filter "configurations:Debug"
         defines "BT_DEBUG"
