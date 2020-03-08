@@ -26,7 +26,3 @@
 
 #include "Brute/Renderer/OrthographicCamera.h"
 // -----------------------------------------
-
-// ---Entry Point---------------------------
-#include "Brute/Core/EntryPoint.h"
-// -----------------------------------------

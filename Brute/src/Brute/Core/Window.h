@@ -27,6 +27,7 @@ namespace Brute {
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;
 
+		// TODO: Call WindowsWindow::Destroy()
 		virtual ~Window() = default;
 
 		virtual void OnUpdate() = 0;

@@ -20,7 +20,7 @@ namespace Brute {
 		virtual const std::vector<Brute::Ref<VertexBuffer>>& GetVertexBuffers() const = 0;
 		virtual const Brute::Ref<IndexBuffer>& GetIndexBuffer() const = 0;
 
-		static VertexArray* Create();
+		static Ref<VertexArray> Create();
 	};
 
 }

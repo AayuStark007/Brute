@@ -7,7 +7,7 @@
 
 namespace Brute {
 
-	VertexArray* VertexArray::Create()
+	Ref<VertexArray> VertexArray::Create()
 	{
 		// determine which api our renderer is using
 		switch (Renderer::GetAPI())
@@ -17,7 +17,7 @@ namespace Brute {
 			return nullptr;
 
 		case RendererAPI::API::OpenGL:
-			return new OpenGLVertexArray();
+			return CreateRef<OpenGLVertexArray>();
 
 		case RendererAPI::API::Direct3D:
 			BT_CORE_ASSERT(false, "RendererAPI::API::Direct3D is curently not supported!");

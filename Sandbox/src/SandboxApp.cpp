@@ -1,10 +1,14 @@
 #include <Brute.h>
+#include <Brute/Core/EntryPoint.h>
+
 #include <Platform/OpenGL/OpenGLShader.h>
 
 #include "imgui/imgui.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+
+#include "Sandbox2D.h"
 
 
 class ExampleLayer : public Brute::Layer
@@ -18,7 +22,7 @@ public:
 		// Index Buffer
 		// Shader
 
-		m_VertexArray.reset(Brute::VertexArray::Create());
+		m_VertexArray = Brute::VertexArray::Create();
 
 		float vertices[3 * 7] = {
 			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
@@ -79,7 +83,7 @@ public:
 
 		////// RENDER SQUARE //////
 
-		m_SquareVA.reset(Brute::VertexArray::Create());
+		m_SquareVA = Brute::VertexArray::Create();
 
 		float squareVertices[5 * 4] = {
 			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,  // Bottom-Left  (black)
@@ -225,7 +229,8 @@ class Sandbox : public Brute::Application
 public:
 	Sandbox()
 	{
-		PushLayer(new ExampleLayer());
+		//PushLayer(new ExampleLayer());
+		PushLayer(new Sandbox2D());
 	}
 
 	~Sandbox()
