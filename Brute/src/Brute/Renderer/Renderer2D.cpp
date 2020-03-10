@@ -5,8 +5,6 @@
 #include "Shader.h"
 #include "RenderCommand.h"
 
-#include <Platform/OpenGL/OpenGLShader.h>
-
 namespace Brute {
 
 	struct Renderer2DContext
@@ -57,9 +55,9 @@ namespace Brute {
 
 	void Renderer2D::BeginScene(const OrthographicCamera& camera)
 	{
-		std::dynamic_pointer_cast<OpenGLShader>(s_Context->flatColorShader)->Bind();
-		std::dynamic_pointer_cast<OpenGLShader>(s_Context->flatColorShader)->UploadUniformMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
-		std::dynamic_pointer_cast<OpenGLShader>(s_Context->flatColorShader)->UploadUniformMat4("u_Transform", glm::mat4(1.0f));
+		s_Context->flatColorShader->Bind();
+		s_Context->flatColorShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
+		s_Context->flatColorShader->SetMat4("u_Transform", glm::mat4(1.0f));
 	}
 
 	void Renderer2D::EndScene()
@@ -74,8 +72,8 @@ namespace Brute {
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color)
 	{
-		std::dynamic_pointer_cast<OpenGLShader>(s_Context->flatColorShader)->Bind();
-		std::dynamic_pointer_cast<OpenGLShader>(s_Context->flatColorShader)->UploadUniformFloat4("u_Color", color);
+		s_Context->flatColorShader->Bind();
+		s_Context->flatColorShader->SetFloat4("u_Color", color);
 
 		s_Context->quadVertexArray->Bind();
 		RenderCommand::DrawIndexed(s_Context->quadVertexArray);

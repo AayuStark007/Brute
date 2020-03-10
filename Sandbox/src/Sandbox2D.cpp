@@ -1,5 +1,10 @@
 #include "Sandbox2D.h"
 
+#include "imgui/imgui.h"
+
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 Sandbox2D::Sandbox2D()
 	: Layer("Sandbox2D"), m_CameraController(1280.0f / 720.0f, true)
 {
@@ -28,8 +33,6 @@ void Sandbox2D::OnUpdate(Brute::TimeStep ts)
 	Brute::Renderer2D::EndScene();
 
 	//Brute::Renderer2D::Submit(m_FlatColorShader, m_VertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-	//std::dynamic_pointer_cast<Brute::OpenGLShader>(m_FlatColorShader)->Bind();
-	//std::dynamic_pointer_cast<Brute::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat4("u_Color", m_SquareColor);
 }
 
 void Sandbox2D::OnImGuiRender()
