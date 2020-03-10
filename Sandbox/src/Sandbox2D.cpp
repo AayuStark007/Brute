@@ -7,33 +7,7 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach()
 {
-	m_VertexArray = Brute::VertexArray::Create();
 
-	float squareVertices[4 * 3] = {
-		-0.5f, -0.5f, 0.0f,  // Bottom-Left  (black)
-		 0.5f, -0.5f, 0.0f,  // Bottom-Right (red)
-		 0.5f,  0.5f, 0.0f,  // Top-Right     (yellow)
-		-0.5f,  0.5f, 0.0f   // Top-Left    (green)
-	};
-
-	Brute::Ref<Brute::VertexBuffer> squareVB;
-	squareVB.reset(Brute::VertexBuffer::Create(
-		squareVertices, sizeof(squareVertices)
-	));
-
-	squareVB->SetLayout({
-		{ Brute::ShaderDataType::Float3, "a_Position" }
-	});
-	m_VertexArray->AddVertexBuffer(squareVB);
-
-	uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-	Brute::Ref<Brute::IndexBuffer> squareIB;
-	squareIB.reset(Brute::IndexBuffer::Create(
-		squareIndices, sizeof(squareIndices) / sizeof(uint32_t)
-	));
-	m_VertexArray->SetIndexBuffer(squareIB);
-
-	m_FlatColorShader = Brute::Shader::Create("assets/shaders/FlatColor.glsl");
 }
 
 void Sandbox2D::OnDetach()
@@ -49,14 +23,13 @@ void Sandbox2D::OnUpdate(Brute::TimeStep ts)
 	Brute::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 	Brute::RenderCommand::Clear();
 
-	Brute::Renderer::BeginScene(m_CameraController.GetCamera());
+	Brute::Renderer2D::BeginScene(m_CameraController.GetCamera());
+	Brute::Renderer2D::DrawQuad({ 0.0f, 0.0f }, { 1.0f, 1.0f }, { 0.8f, 0.2f, 0.3f, 1.0f });
+	Brute::Renderer2D::EndScene();
 
-	std::dynamic_pointer_cast<Brute::OpenGLShader>(m_FlatColorShader)->Bind();
-	std::dynamic_pointer_cast<Brute::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat4("u_Color", m_SquareColor);
-
-	Brute::Renderer::Submit(m_FlatColorShader, m_VertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-
-	Brute::Renderer::EndScene();
+	//Brute::Renderer2D::Submit(m_FlatColorShader, m_VertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+	//std::dynamic_pointer_cast<Brute::OpenGLShader>(m_FlatColorShader)->Bind();
+	//std::dynamic_pointer_cast<Brute::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat4("u_Color", m_SquareColor);
 }
 
 void Sandbox2D::OnImGuiRender()

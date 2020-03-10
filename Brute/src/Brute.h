@@ -17,6 +17,7 @@
 
 // ---Renderer------------------------------
 #include "Brute/Renderer/Renderer.h"
+#include "Brute/Renderer/Renderer2D.h"
 #include "Brute/Renderer/RenderCommand.h"
 
 #include "Brute/Renderer/Buffer.h"
