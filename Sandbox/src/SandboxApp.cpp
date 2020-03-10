@@ -150,8 +150,8 @@ public:
 		m_Texture = Brute::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_BruteLogoTexture = Brute::Texture2D::Create("assets/textures/Logo.png");
 
-		std::dynamic_pointer_cast<Brute::OpenGLShader>(textureShader)->Bind();
-		std::dynamic_pointer_cast<Brute::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
+		textureShader->Bind();
+		textureShader->SetInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Brute::TimeStep ts) override
