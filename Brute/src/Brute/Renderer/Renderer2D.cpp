@@ -12,8 +12,8 @@ namespace Brute {
 	struct Renderer2DContext
 	{
 		Ref<VertexArray> quadVertexArray;
-		Ref<Shader> flatColorShader;
 		Ref<Shader> textureShader;
+		Ref<Texture2D> whiteTexture;
 	};
 
 	static Renderer2DContext* s_Context;
@@ -49,7 +49,10 @@ namespace Brute {
 		));
 		s_Context->quadVertexArray->SetIndexBuffer(squareIB);
 
-		s_Context->flatColorShader = Shader::Create("assets/shaders/FlatColor.glsl");
+		s_Context->whiteTexture = Texture2D::Create(1, 1);
+		uint32_t whiteTextureData = 0xffffffff;
+		s_Context->whiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));
+
 		s_Context->textureShader = Shader::Create("assets/shaders/Texture.glsl");
 		s_Context->textureShader->Bind();
 		s_Context->textureShader->SetInt("u_Texture", 0);
@@ -62,9 +65,6 @@ namespace Brute {
 
 	void Renderer2D::BeginScene(const OrthographicCamera& camera)
 	{
-		s_Context->flatColorShader->Bind();
-		s_Context->flatColorShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
-
 		s_Context->textureShader->Bind();
 		s_Context->textureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
 	}
@@ -81,16 +81,17 @@ namespace Brute {
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color)
 	{
-		s_Context->flatColorShader->Bind();
-		s_Context->flatColorShader->SetFloat4("u_Color", color);
+		s_Context->textureShader->SetFloat4("u_Color", color);
+		s_Context->whiteTexture->Bind();
 
 		auto transform =
 			glm::translate(glm::mat4(1.0f), position) * /* rotation */
 			glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
-		s_Context->flatColorShader->SetMat4("u_Transform", transform);
+		s_Context->textureShader->SetMat4("u_Transform", transform);
 
 		s_Context->quadVertexArray->Bind();
 		RenderCommand::DrawIndexed(s_Context->quadVertexArray);
+		s_Context->whiteTexture->Unbind();
 	}
 
 	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<Texture2D>& texture)
@@ -100,17 +101,17 @@ namespace Brute {
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture)
 	{
-		s_Context->textureShader->Bind();
+		s_Context->textureShader->SetFloat4("u_Color", glm::vec4(1.0f));
+		texture->Bind();
 
 		auto transform =
 			glm::translate(glm::mat4(1.0f), position) * /* rotation */
 			glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
 		s_Context->textureShader->SetMat4("u_Transform", transform);
 
-		texture->Bind();
-
 		s_Context->quadVertexArray->Bind();
 		RenderCommand::DrawIndexed(s_Context->quadVertexArray);
+		texture->Unbind();
 	}
 
 }
